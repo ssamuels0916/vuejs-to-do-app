@@ -1,0 +1,21 @@
+{
+  "name": "sharifa",
+  "version": "1.0.0",
+  "description": "vue to-do app tutorial",
+  "main": "y",
+  "repository": {
+    "type": "git",
+    "url": "y"
+  },
+  "author": "y",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "start",
+    "install"
+  ]
+}
