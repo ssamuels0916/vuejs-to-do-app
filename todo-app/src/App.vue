@@ -1,19 +1,21 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
+    <!-- v-bind directive is used to pass data from main component to TodoList component-->
     <todo-list v-bind:todos="todos"></todo-list>
+    <create-todo v-on:create-todo="createTodo"></create-todo>
   </div>
 </template>
 
 <script>
-import Todo from './components/Todo';
 import TodoList from './components/TodoList';
+import CreateTodo from './components/CreateTodo';
 
 export default {
   name: 'app',
   components: {
-    Todo,
     TodoList,
+    CreateTodo,
   },
   // sends data to the template
   data() {
@@ -36,6 +38,11 @@ export default {
         done: false,
       }],
     };
+  },
+  methods: {
+    createTodo(newTodo) {
+      this.todos.push(newTodo);
+    },
   },
 };
 </script>

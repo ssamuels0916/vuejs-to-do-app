@@ -1,6 +1,7 @@
 <template>
   <div class='ui centered card'>
-    <div class='content' v-show="!isEditing">
+  <!-- to do showin when not in editing mode-->
+    <div class="content" v-show="!isEditing">
         <div class='header'>
             {{ todo.title }}
         </div>
@@ -11,32 +12,37 @@
             <span class='right floated edit icon' v-on:click="showForm">
             <i class='edit icon'></i>
           </span>
+          <!-- add trash icon & event listenter to delete todo-->
+          <span class="right floated trash icon" v-on:click="deleteTodo(todo)">
+            <i class="trash icon"></i>
+          </span>
         </div>
     </div>
+    <!--form is visible when in editing mode -->
     <div class="content" v-show="isEditing">
-        <div class='ui form'>
-          <div class='field'>
-            <label>Title</label>
-            <input type='text' v-model="todo.title">
-          </div>
-          <div class='field'>
-            <label>Project</label>
-            <input type='text' v-model="todo.project">
-          </div>
-          <div class='ui two button attached buttons'>
-            <button class='ui basic blue button' v-on:click="hideForm">
-              Close x
-            </button>
-          </div>
+      <div class='ui form'>
+        <div class='field'>
+          <label>Title</label>
+          <input type='text' v-model="todo.title">
+        </div>
+        <div class='field'>
+          <label>Project</label>
+          <input type='text' v-model="todo.project">
+        </div>
+        <div class='ui two button attached buttons'>
+          <button class='ui basic blue button' v-on:click="hideForm">
+            Close x
+          </button>
         </div>
       </div>
+    </div>
     <div class='ui bottom attached green basic button' v-show="!isEditing && todo.done" disabled>
         Completed
     </div>
     <div class='ui bottom attached red basic button' v-show="!isEditing && !todo.done">
         Pending
     </div>
-</div>
+  </div>
 </template>
 
 <script type="text/javascript">
@@ -53,6 +59,12 @@
       },
       hideForm() {
         this.isEditing = false;
+      },
+      deleteTodo(todo) {
+        this.$emit('delete-todo', todo);
+      },
+      completeTodo(todo) {
+        this.$emit('complete-todo', todo);
       },
     },
   };
